@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <label>標題:</label>
         <input type="text" v-model="form.title">
         <button type="button" @click="push()">送出</button>
