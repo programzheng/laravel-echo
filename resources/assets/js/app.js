@@ -17,6 +17,9 @@ window.Vue = require('vue');
 
 import router from './router'
 // import home from './components/Home.vue';
+import { loadProgressBar } from 'axios-progress-bar'
+import 'axios-progress-bar/dist/nprogress.css'
+loadProgressBar()
 
 const app = new Vue({
     el: '#page',
