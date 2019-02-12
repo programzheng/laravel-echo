@@ -7,7 +7,6 @@
         <div>
             <div v-for="(data, dataKey) in dataList" :key="dataKey">
                 <router-link :to="`/detail/${dataKey}`">{{data.title}}</router-link>
-                <!-- <label>{{data.message}}</label> -->
             </div>
         </div>
     </div>
@@ -27,7 +26,6 @@
             var io = require('socket.io-client');
             // 建立 socket.io 的連線
             var notification = io.connect(`http://${window.location.hostname}:3000`);
-            // 當從 socket.io server 收到 notification 時將訊息印在 console 上
             notification.on('notification', function(dataList) {
                 if(dataList){
                     self.dataList = JSON.parse(dataList);

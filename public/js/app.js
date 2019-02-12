@@ -52277,7 +52277,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52292,7 +52291,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var io = __webpack_require__(67);
         // 建立 socket.io 的連線
         var notification = io.connect('http://' + window.location.hostname + ':3000');
-        // 當從 socket.io server 收到 notification 時將訊息印在 console 上
         notification.on('notification', function (dataList) {
             if (dataList) {
                 self.dataList = JSON.parse(dataList);
@@ -56347,10 +56345,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var io = __webpack_require__(67);
         // 建立 socket.io 的連線
         var notification = io.connect('http://' + window.location.hostname + ':3000');
-        // 當從 socket.io server 收到 notification 時將訊息印在 console 上
-        notification.on('notification', function (dataList) {
-            if (dataList) {
-                self.dataList = JSON.parse(dataList)[self.$route.params.key]['detail'];
+        notification.on('notification', function (resoponse) {
+            var dataList = JSON.parse(resoponse);
+            if (self.$route.params.key) {
+                self.dataList = dataList[self.$route.params.key].detail;
             }
         });
         self.init();
@@ -56363,7 +56361,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 method: 'post',
                 url: self.$route.path + '/getlist'
             }).then(function (response) {
-                console.log(response);
                 self.title = response.data.title;
                 self.dataList = response.data.detail;
             });

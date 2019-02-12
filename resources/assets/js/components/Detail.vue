@@ -27,10 +27,10 @@
                 var io = require('socket.io-client');
                 // 建立 socket.io 的連線
                 var notification = io.connect(`http://${window.location.hostname}:3000`);
-                // 當從 socket.io server 收到 notification 時將訊息印在 console 上
-                notification.on('notification', function(dataList) {
-                    if(dataList){
-                        self.dataList = JSON.parse(dataList)[self.$route.params.key]['detail'];
+                notification.on('notification', function(resoponse) {
+                    let dataList = JSON.parse(resoponse);
+                    if(self.$route.params.key){
+                        self.dataList = dataList[self.$route.params.key].detail;
                     }
                 });
                 self.init();
@@ -43,7 +43,6 @@
                         url: `${self.$route.path}/getlist`,
                     })
                         .then(function(response){
-                            console.log(response);
                             self.title = response.data.title;
                             self.dataList = response.data.detail;
                         })

@@ -30,6 +30,6 @@ class HomeController extends FrontController
 
     public function clear(){
         $this->redis->flushdb();
-        event(new PushNotification('message','[]'));
+        event(new PushNotification('log','[]'));
     }
 }
