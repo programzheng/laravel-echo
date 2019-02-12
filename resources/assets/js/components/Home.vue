@@ -6,7 +6,7 @@
         <button type="button" @click="clear()">清空所有資料</button>
         <div>
             <div v-for="(data, dataKey) in dataList" :key="dataKey">
-                <router-link :to="`/detail/${dataKey}`">{{data.title}}</router-link>
+                <router-link :to="`/detail/${dataKey}`" title="連結內頁">{{data.title}}</router-link>
             </div>
         </div>
     </div>

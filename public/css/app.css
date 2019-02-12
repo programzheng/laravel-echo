@@ -4,7 +4,13 @@ html {
 }
 
 a {
-  color: white;
+  font-size: 30px;
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: #ff9100;
 }
 
 #page {
