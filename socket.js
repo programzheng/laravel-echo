@@ -1,0 +1,17 @@
+var app = require('express');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var Redis = require('ioredis');
+var redis = new Redis();
+redis.subscribe('test-channel', function(err, count) {
+  console.log('connect!');
+});
+redis.on('log', function(channel, notification) {
+  console.log(notification);
+  notification = JSON.parse(notification);
+  io.emit('notification', notification.data.log);
+});
+// 監聽 3000 port
+http.listen(3000, function() {
+  console.log('Listening on Port 3000');
+});
