@@ -3,6 +3,11 @@ html {
   color: white;
 }
 
+button {
+  background: white;
+  color: black;
+}
+
 a {
   font-size: 30px;
   text-decoration: none;
