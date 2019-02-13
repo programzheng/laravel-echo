@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Events\PushNotification;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class HomeController extends FrontController
         }
         $redisArray = json_decode($this->redis->get('data'),true);
         array_push($redisArray, [
-            'id' => session()->getId(),
+            'id' => Auth::check() ? Auth::user()->id : null,
             'title' => $request->input('title'),
             'detail' => []
         ]);

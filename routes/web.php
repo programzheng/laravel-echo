@@ -12,6 +12,8 @@
 */
 
 Route::get('/{any}', 'IndexController@index')->where('any', '.*');
+Route::post( 'register', 'RegisterController@register' );
+Route::post( 'login', 'LoginController@login' );
 Route::group(
     [
         'prefix' => ''

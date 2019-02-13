@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Redis;
 
 class FrontController extends Controller
 {
-    protected $redis;
+    protected $data,$redis;
     public function __construct(){
         $this->redis = Redis::connection();
+        $this->data = [];
     }
 }

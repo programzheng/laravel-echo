@@ -29,7 +29,7 @@ a:hover {
   color: #3048ff;
 }
 
-#page {
+.content {
   height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -48,17 +48,17 @@ a:hover {
       align-content: space-around;
 }
 
-#page .top-input {
+.content .top-input {
   width: 463px;
   border-bottom: 3px solid white;
 }
 
-#page .top-input .input {
+.content .top-input .input {
   -ms-flex-item-align: stretch;
       align-self: stretch;
 }
 
-#page .top-input .button {
+.content .top-input .button {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;

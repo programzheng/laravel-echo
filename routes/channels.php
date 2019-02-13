@@ -14,7 +14,12 @@
 //     return true;
 // });
 
-
-Broadcast::channel('session.{id}', function () {
+Broadcast::channel('user.{id}', function () {
     return true;
 });
+
+
+
+// Broadcast::channel('session.{id}', function () {
+//     return true;
+// });
