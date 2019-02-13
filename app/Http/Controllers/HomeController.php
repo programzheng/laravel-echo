@@ -18,11 +18,13 @@ class HomeController extends FrontController
         }
         $redisArray = json_decode($this->redis->get('data'),true);
         array_push($redisArray, [
+            'id' => session()->getId(),
             'title' => $request->input('title'),
             'detail' => []
         ]);
         broadcast(new PushNotification(['log'=>$redisArray]));
         $this->redis->set('data', json_encode($redisArray));
+        return $redisArray;
     }
 
     public function clear(){

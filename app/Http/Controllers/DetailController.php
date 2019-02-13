@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\PushNotification;
+use App\Events\PraviteSessionNotification;
 use Illuminate\Http\Request;
 
 class DetailController extends FrontController
@@ -23,7 +24,9 @@ class DetailController extends FrontController
         $redisArray[$key]['detail'] = $detailArray;
 
         broadcast(new PushNotification(['log'=>$redisArray]));
+        broadcast(new PraviteSessionNotification($redisArray[$key]['id'], ['log'=>$redisArray]));
         $this->redis->set('data', json_encode($redisArray));
+        return $redisArray;
     }
 
     public function clear($key){

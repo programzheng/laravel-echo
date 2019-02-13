@@ -6650,6 +6650,7 @@ if (token) {
 window.io = __webpack_require__(59);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */]({
+  authEndpoint: '/guard/broadcast/auth',
   broadcaster: 'socket.io',
   host: window.location.hostname + ':6001'
 });

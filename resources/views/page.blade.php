@@ -9,10 +9,18 @@
         <title>PushNotification</title>
     </head>
     <body>
+        <label>session:{{session()->getId()}}</label>
         <div id="page">
             <router-view></router-view>
         </div>
     </body>
     <script src="{{asset('js/app.js')}}"></script>
+    <script>
+        Echo.private('session.' + '{{session()->getId()}}')
+        .listen('PraviteSessionNotification', (e) => {
+            console.log(`私人頻道訂閱成功`);
+            console.log(e);
+        });
+    </script>
 
 </html>
