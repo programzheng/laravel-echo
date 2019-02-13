@@ -4,8 +4,19 @@ html {
 }
 
 button {
-  background: white;
+  background-color: white;
+  border: none;
   color: black;
+}
+
+button:hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3048ff), to(white));
+  background-image: linear-gradient(#3048ff, white);
+  color-color: white;
+}
+
+textarea {
+  border-radius: 3px;
 }
 
 a {
@@ -15,7 +26,7 @@ a {
 }
 
 a:hover {
-  color: #ff9100;
+  color: #3048ff;
 }
 
 #page {
@@ -23,11 +34,33 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+}
+
+#page .top-input {
+  width: 463px;
+  border-bottom: 3px solid white;
+}
+
+#page .top-input .input {
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+}
+
+#page .top-input .button {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 

@@ -36,6 +36,6 @@ class PushNotification implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('test-channel');
+        return new Channel('notification');
     }
 }

@@ -3,18 +3,34 @@ html
   color: rgb(255,255,255)
 
 button
-  background: rgb(255,255,255)
+  background-color: rgb(255,255,255)
+  border: none
   color: rgb(0,0,0)
+  &:hover
+    background-image: linear-gradient(rgb(48, 72, 255), rgb(255,255,255))
+    color-color: rgb(255,255,255)
+
+textarea
+  border-radius: 3px
 
 a
   font-size: 30px
   text-decoration: none
   color: inherit
   &:hover
-    color: #ff9100
+    color: rgb(48, 72, 255)
 
 #page
   height: 500px
   display: flex
+  flex-flow: column wrap
   align-items: center
   justify-content: center
+  align-content: space-around
+  .top-input
+    width: 463px
+    border-bottom: 3px solid rgb(255,255,255)
+    .input
+      align-self: stretch
+    .button
+      flex: 2

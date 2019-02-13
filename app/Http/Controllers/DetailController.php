@@ -34,6 +34,6 @@ class DetailController extends FrontController
         $data = json_encode($redisArray);
         $this->redis->set('data', $data);
 
-        event(new PushNotification('log',$data));
+        event(new PushNotification('message',$data));
     }
 }

@@ -7,7 +7,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         <title>PushNotification</title>
-
     </head>
     <body>
         <div id="page">
