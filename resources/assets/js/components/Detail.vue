@@ -24,13 +24,9 @@
             },
             created(){
                 var self = this;
-                var io = require('socket.io-client');
-                // 建立 socket.io 的連線
-                var notification = io.connect(`http://${window.location.hostname}:3000`);
-                notification.on('notification', function(resoponse) {
-                    let dataList = JSON.parse(resoponse);
-                    if(self.$route.params.key){
-                        self.dataList = dataList[self.$route.params.key].detail;
+                window.Echo.channel('notification').listen('PushNotification', (e) => {
+                    if(self.$route.params.key && e.data.log){
+                        self.dataList = e.data.log[self.$route.params.key].detail;
                     }
                 });
                 self.init();

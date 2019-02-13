@@ -23,16 +23,12 @@
         },
         created(){
             var self = this;
-            var io = require('socket.io-client');
-            // 建立 socket.io 的連線
-            var notification = io.connect(`http://${window.location.hostname}:3000`);
-            notification.on('notification', function(dataList) {
-                if(dataList){
-                    self.dataList = JSON.parse(dataList);
+            window.Echo.channel('notification').listen('PushNotification', (e) => {
+                if(e.data.log){
+                    self.dataList = e.data.log
                 }
             });
             self.init();
-
         },
         methods:{
             init(){

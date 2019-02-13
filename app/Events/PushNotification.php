@@ -14,19 +14,17 @@ class PushNotification implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $name;
-    public $message;
+    public $data;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($name, $message)
+    public function __construct($data)
     {
         //
-        $this->name = $name;
-        $this->message = $message;        
+        $this->data = $data;
     }
 
     /**
@@ -37,5 +35,12 @@ class PushNotification implements ShouldBroadcast
     public function broadcastOn()
     {
         return new Channel('notification');
+    }
+
+    public function broadcastWith()
+    {
+        return [
+            'data' => $this->data
+        ];
     }
 }

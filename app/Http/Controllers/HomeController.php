@@ -21,13 +21,12 @@ class HomeController extends FrontController
             'title' => $request->input('title'),
             'detail' => []
         ]);
-        $data = json_encode($redisArray);
-        $this->redis->set('data', $data);
-        event(new PushNotification('message',$data));
+        broadcast(new PushNotification(['log'=>$redisArray]));
+        $this->redis->set('data', json_encode($redisArray));
     }
 
     public function clear(){
         $this->redis->flushdb();
-        event(new PushNotification('message','[]'));
+        broadcast(new PushNotification(['log'=>'[]']));
     }
 }

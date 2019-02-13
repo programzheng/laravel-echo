@@ -21,19 +21,16 @@ class DetailController extends FrontController
             'detail' => $request->input('detail')
         ]);
         $redisArray[$key]['detail'] = $detailArray;
-        $data = json_encode($redisArray);
-        $this->redis->set('data', $data);
 
-        event(new PushNotification('message',$data));
-
+        broadcast(new PushNotification(['log'=>$redisArray]));
+        $this->redis->set('data', json_encode($redisArray));
     }
 
     public function clear($key){
         $redisArray = json_decode($this->redis->get('data'),true);
         $redisArray[$key]['detail'] = [];
-        $data = json_encode($redisArray);
-        $this->redis->set('data', $data);
-
-        event(new PushNotification('message',$data));
+        
+        broadcast(new PushNotification(['log'=>$redisArray]));
+        $this->redis->set('data', json_encode($redisArray));
     }
 }
