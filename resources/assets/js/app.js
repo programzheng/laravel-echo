@@ -15,14 +15,17 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import router from './router'
+import router from './router';
+import store from './store'
+
 // import home from './components/Home.vue';
-import { loadProgressBar } from 'axios-progress-bar'
-import 'axios-progress-bar/dist/nprogress.css'
-loadProgressBar()
+import { loadProgressBar } from 'axios-progress-bar';
+import 'axios-progress-bar/dist/nprogress.css';
+loadProgressBar();
 
 const app = new Vue({
     el: '#page',
     router,
+    store
     // render: h => h(home)
 });

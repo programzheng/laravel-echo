@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Auth;
+
+class LogoutController extends FrontController
+{
+    public function logout() {
+        Auth::logout();
+        $this->data['status'] = true;
+        return response()->json($this->data);
+    }
+}

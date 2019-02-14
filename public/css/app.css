@@ -29,7 +29,7 @@ a:hover {
   color: #3048ff;
 }
 
-.content {
+.layout {
   height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,24 +41,24 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -ms-flex-line-pack: distribute;
       align-content: space-around;
 }
 
-.content .top-input {
+.layout .top-input {
   width: 463px;
   border-bottom: 3px solid white;
 }
 
-.content .top-input .input {
+.layout .top-input .input {
   -ms-flex-item-align: stretch;
       align-self: stretch;
 }
 
-.content .top-input .button {
+.layout .top-input .button {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;

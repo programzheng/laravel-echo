@@ -21,7 +21,6 @@ export default {
         }
     },
     created(){
-
     },
     methods:{
         send(){

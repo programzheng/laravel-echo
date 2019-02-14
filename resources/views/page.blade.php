@@ -11,12 +11,10 @@
     <body>
         <label>session:{{session()->getId()}}</label>
         <div id="page">
-            @if(!Auth::check())
-                <router-link to="/register">註冊</router-link>
-                <router-link to="/login">登入</router-link>
-            @endif
-            <div class="content">
+            <div class="layout">
+                <router-view name="header"></router-view>
                 <router-view></router-view>
+                <router-view name="footer"></router-view>
             </div>
         </div>
     </body>

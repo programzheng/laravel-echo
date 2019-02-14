@@ -12,8 +12,10 @@
 */
 
 Route::get('/{any}', 'IndexController@index')->where('any', '.*');
+Route::post( 'auth', 'LoginController@auth' );
 Route::post( 'register', 'RegisterController@register' );
 Route::post( 'login', 'LoginController@login' );
+Route::post( 'logout', 'LogoutController@logout' );
 Route::group(
     [
         'prefix' => ''
