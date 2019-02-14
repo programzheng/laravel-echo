@@ -21,21 +21,6 @@
                 
             },
             methods:{
-                init(){
-                    var self = this;
-                    axios({
-                        method: 'post',
-                        url: '/auth',
-                    })
-                        .then(function(response){
-                            if(response.data.status){
-                                self.login = true;
-                            }
-                            else{
-                                self.login = false;
-                            }
-                        });
-                },
                 logout(){
                     var self = this;
                     axios({

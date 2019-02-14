@@ -24,7 +24,7 @@ class DetailController extends FrontController
         $redisArray[$key]['detail'] = $detailArray;
 
         broadcast(new PushNotification(['log'=>$redisArray]));
-        broadcast(new PraviteUserNotification($redisArray[$key]['id'], ['log'=>$redisArray]));
+        broadcast(new PraviteUserNotification($redisArray[$key]['id'], ['log'=>$redisArray]))->toOthers();
         $this->redis->set('data', json_encode($redisArray));
         return $redisArray;
     }

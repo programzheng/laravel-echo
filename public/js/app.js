@@ -41953,7 +41953,13 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
             footer: __WEBPACK_IMPORTED_MODULE_7__components_Footer_vue___default.a
         }, meta: {
             middleware: [__WEBPACK_IMPORTED_MODULE_3__middleware_auth__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__middleware_log__["a" /* default */]]
-        }, name: 'home' }, { path: '/detail/:key', component: __WEBPACK_IMPORTED_MODULE_11__components_Detail_vue___default.a, name: 'detail' }],
+        }, name: 'home' }, { path: '/detail/:key', components: {
+            default: __WEBPACK_IMPORTED_MODULE_11__components_Detail_vue___default.a,
+            header: __WEBPACK_IMPORTED_MODULE_6__components_Header_vue___default.a,
+            footer: __WEBPACK_IMPORTED_MODULE_7__components_Footer_vue___default.a
+        }, meta: {
+            middleware: [__WEBPACK_IMPORTED_MODULE_3__middleware_auth__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__middleware_log__["a" /* default */]]
+        }, name: 'detail' }],
     value: {
         auth: false
     }
@@ -44762,19 +44768,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {},
 
     methods: {
-        init: function init() {
-            var self = this;
-            axios({
-                method: 'post',
-                url: '/auth'
-            }).then(function (response) {
-                if (response.data.status) {
-                    self.login = true;
-                } else {
-                    self.login = false;
-                }
-            });
-        },
         logout: function logout() {
             var self = this;
             axios({
@@ -45218,12 +45211,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         send: function send() {
             var self = this;
             axios({
-                method: "post",
-                url: "/login",
+                method: 'post',
+                url: '/login',
                 data: self.form
             }).then(function (response) {
                 if (response.status) {
-                    location.href = "/";
+                    self.$router.push({ name: 'home' });
                 }
             });
         }

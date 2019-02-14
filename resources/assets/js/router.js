@@ -33,7 +33,13 @@ const router = new Router({
         }, meta:{
             middleware: [auth, log]
         }, name: 'home' },
-        { path: '/detail/:key', component: detail, name: 'detail' },
+        { path: '/detail/:key', components: {
+            default: detail,
+            header: header,
+            footer: footer
+        }, meta:{
+            middleware: [auth, log]
+        }, name: 'detail' },
     ],
     value: {
         auth: false

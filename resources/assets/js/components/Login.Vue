@@ -32,7 +32,7 @@ export default {
             })
                 .then(function(response){
                     if(response.status){
-                        location.href = `/`;
+                        self.$router.push({ name: 'home' });
                     }
                 })
         }
