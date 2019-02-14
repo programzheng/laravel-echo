@@ -9,7 +9,6 @@ import store from './store.js';
 
 //middleware
 import auth from './middleware/auth';
-import log from './middleware/log';
 
 //components
 import notFound from './components/404.vue';
@@ -31,14 +30,14 @@ const router = new Router({
             header: header,
             footer: footer
         }, meta:{
-            middleware: [auth, log]
+            middleware: [auth]
         }, name: 'home' },
         { path: '/detail/:key', components: {
             default: detail,
             header: header,
             footer: footer
         }, meta:{
-            middleware: [auth, log]
+            middleware: [auth]
         }, name: 'detail' },
     ],
     value: {

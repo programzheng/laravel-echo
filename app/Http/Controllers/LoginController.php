@@ -11,6 +11,7 @@ class LoginController extends FrontController
     public function auth(Request $request) {
         if(Auth::check()){
             $this->data['status'] = true;
+            $this->data['user'] = Auth::user();
         }
         else{
             $this->data['status'] = false;

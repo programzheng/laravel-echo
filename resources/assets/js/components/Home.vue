@@ -1,8 +1,8 @@
 <template>
     <div class="">
         <label>標題:</label>
-        <input type="text" v-model="form.title">
-        <button type="button" @click="push()">送出</button>
+        <input type="text" v-model="form.title" @keyup.enter="send()">
+        <button type="button" @click="send()">送出</button>
         <button type="button" @click="clear()">清空所有資料</button>
         <div>
             <div v-for="(data, dataKey) in dataList" :key="dataKey">
@@ -41,7 +41,7 @@
                         self.dataList = response.data;
                     })
             },
-            push(){
+            send(){
                 var self = this;
                 axios({
                     method: 'post',

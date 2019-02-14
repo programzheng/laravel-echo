@@ -9,31 +9,28 @@ use Illuminate\Http\Request;
 class DetailController extends FrontController
 {
     public function getlist ($key){
-        $redisArray = json_decode($this->redis->get('data'),true);
-        $data = $redisArray[$key];
+        $data = json_decode($this->redis->hget('data', $key),true);
         return $data;
     }
 
     public function push (Request $request, $key){
-        $redisArray = json_decode($this->redis->get('data'),true);
-        $detailArray = $redisArray[$key]['detail'];
-        array_push($detailArray, [
+        $parentArray = json_decode($this->redis->hget('data', $key),true);
+        $parentArray['detail'][] = [
             'name' => $request->input('title'),
             'detail' => $request->input('detail')
-        ]);
-        $redisArray[$key]['detail'] = $detailArray;
+        ];
+        $this->redis->hdel('data', $key);
+        $this->redis->hset('data', $key, json_encode($parentArray));
 
-        broadcast(new PushNotification(['log'=>$redisArray]));
-        broadcast(new PraviteUserNotification($redisArray[$key]['id'], ['log'=>$redisArray]))->toOthers();
-        $this->redis->set('data', json_encode($redisArray));
-        return $redisArray;
+        broadcast(new PushNotification(['log'=>$parentArray]));
+        broadcast(new PraviteUserNotification($parentArray['id'], ['log'=>$parentArray]))->toOthers();
+        return $parentArray;
     }
 
     public function clear($key){
-        $redisArray = json_decode($this->redis->get('data'),true);
-        $redisArray[$key]['detail'] = [];
-        
-        broadcast(new PushNotification(['log'=>$redisArray]));
-        $this->redis->set('data', json_encode($redisArray));
+        $parentArray = json_decode($this->redis->hget('data', $key),true);
+        $parentArray['detail'] = [];
+        $this->redis->hset('data', $key, json_encode($parentArray));
+        broadcast(new PushNotification(['log'=>$parentArray]));
     }
 }

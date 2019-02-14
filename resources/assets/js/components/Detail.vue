@@ -1,10 +1,10 @@
 <template>
     <div>
         <label>姓名:</label>
-        <input type="text" v-model="form.title">
+        <input type="text" v-model="form.title" @keyup.enter="send()">
         <label>內容:</label>
-        <textarea v-model="form.detail"></textarea>
-        <button type="button" @click="push()">送出</button>
+        <textarea v-model="form.detail" @keyup.enter="send()"></textarea>
+        <button type="button" @click="send()">送出</button>
         <button type="button" @click="clear()">清空所有資料</button>
         <div>
             <div v-for="(data, dataKey) in dataList" :key="dataKey">
@@ -25,8 +25,8 @@
             created(){
                 var self = this;
                 window.Echo.channel('notification').listen('PushNotification', (e) => {
-                    if(self.$route.params.key && e.data.log){
-                        self.dataList = e.data.log[self.$route.params.key].detail;
+                    if(e.data.log.detail){
+                        self.dataList = e.data.log.detail;
                     }
                 });
                 self.init();
@@ -43,7 +43,7 @@
                             self.dataList = response.data.detail;
                         })
                 },
-                push(){
+                send(){
                     var self = this;
                     axios({
                         method: 'post',

@@ -3,13 +3,13 @@
         登入
         <div class="input">
             <label>電子信箱:</label>
-            <input type="text" v-model="form.email">
+            <input type="text" v-model="form.email" @keyup.enter="send()">
         </div>
         <div class="input">
             <label>密碼:</label>
-            <input type="password" v-model="form.password">
+            <input type="password" v-model="form.password" @keyup.enter="send()">
         </div>
-        <button type="button" @click="send()">送出</button>
+        <button type="button" @click="send()" >送出</button>
     </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
                 data: self.form
             })
                 .then(function(response){
-                    if(response.status){
+                    if(response.data.status){
                         self.$router.push({ name: 'home' });
                     }
                 })

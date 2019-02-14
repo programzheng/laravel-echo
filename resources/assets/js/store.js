@@ -6,11 +6,18 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        auth: false
+        auth: false,
+        user: {}
     },
     mutations: {
-        verify (state) {
+        verify (state, user) {
             state.auth = true;
+            state.user = user;
+        },
+    },
+    getters: {
+        userId: state => {
+            return state.user.id;
         }
     }
 })

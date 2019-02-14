@@ -5,7 +5,7 @@ export default function auth({ next, router, store }) {
     })
         .then(function(response){
             if(response.data.status){
-                store.commit('verify')
+                store.commit('verify', response.data.user);
                 return next();
             }
             else{

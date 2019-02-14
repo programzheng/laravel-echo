@@ -1,6 +1,8 @@
 <template>
     <div>
-        <label>Header</label>
+        <template v-if="notificationCount > 0">
+            新通知({{notificationCount}})
+        </template>
         <!-- vuex內的auth判斷 -->
         <div v-if="$store.state.auth">
             <a @click="logout()">登出</a>
@@ -15,10 +17,17 @@
     export default {
             data(){
                 return{
+                    notificationCount: 0
                 }
             },
             created(){
-                
+                var self = this;
+                if(self.$store.state.auth){
+                    window.Echo.private('user.' + self.$store.getters.userId)
+                    .listen('PraviteUserNotification', (e) => {
+                        self.notification = true;
+                    });
+                }
             },
             methods:{
                 logout(){

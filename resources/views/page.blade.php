@@ -20,13 +20,13 @@
     </body>
     <script src="{{asset('js/app.js')}}"></script>
     <script>
-        @if($user)
-            window.Echo.private('user.' + '{{$user->id}}')
-            .listen('PraviteUserNotification', (e) => {
-                console.log(`會員私人頻道訂閱成功`);
-                alert("success");
-            });
-        @endif
+        // @if($user)
+            // window.Echo.private('user.' + '{{$user->id}}')
+            // .listen('PraviteUserNotification', (e) => {
+            //     console.log(`會員私人頻道訂閱成功`);
+            //     alert("success");
+            // });
+        // @endif
         // Echo.private('session.' + '{{session()->getId()}}')
         // .listen('PraviteSessionNotification', (e) => {
         //     console.log(`暫時私人頻道訂閱成功`);
